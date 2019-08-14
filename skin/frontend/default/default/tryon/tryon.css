@@ -1,0 +1,105 @@
+#upload{
+    background: none repeat scroll 0 0 #F2F2F2;
+    border: 2px solid #CCCCCC;
+    color: black;
+    cursor: pointer !important;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    left: 11px;
+    margin: 9px 1px;
+    padding: 3px;
+    text-align: center;
+    width: 97px;
+}
+
+#upload span{cursor:pointer !important;}
+.darkbg{
+	background:#ddd !important;
+}
+#status{
+	font-family:Arial; padding:5px;
+}
+
+ul#files{ list-style:none; padding:0; margin:0; }
+ul#files li{ padding:10px; margin-bottom:2px; width:200px; float:left; margin-right:10px;}
+ul#files li img{ max-width:180px; max-height:150px; }
+.success{ background:#99f099; border:1px solid #339933; }
+.error{ background:#f0c6c3; border:1px solid #cc6622; }
+.thumb{ position: absolute; }
+.hoverscroll {
+		border: #000 solid 1px;
+		width:200px!important;
+		height:40px!important
+	}
+	#my-list li {
+		width: 40px
+		height: 40px;
+		background: #fff;
+		border: #000 solid 1px;
+                cursor: pointer;
+	}
+	div.hoverscroll {
+	position:relative;
+	z-index=999;
+}
+
+
+/* List container */
+div.hoverscroll div.listcontainer {
+	overflow:hidden;
+	width:200px!important;
+	height:40px!important
+}
+div.hoverscroll div.fixed-listcontainer {
+    overflow: hidden;
+    float: left;
+}
+
+/* Actual list containing items */
+div.hoverscroll ul.list {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+
+/* Items contained in the list */
+div.hoverscroll ul.list li.item {
+	display:block;
+	padding:0;
+}
+div.hoverscroll.horizontal ul.list li.item {
+	float:left;
+}
+.pic {  background: none repeat scroll 0 0 #F2F2F2;
+    border: 2px solid #CCCCCC;
+    cursor: pointer;
+    float: right;
+    font-size: 15px;
+    font-weight: bold;
+    height: 27px;
+    margin-right: -24px;
+    margin-top: 10px;
+    padding-left: 4px;
+    top: 6px;
+    width: 96px;}
+.textdisplay{position:absolute; top:218px; left:18px; display:none; color:#fff;font-size:16px}
+.firstdiv{width:201px; height:250px; overflow:hidden; position:relative;}
+.second{position:absolute; width:100px; height:20px; top:15px; left:39px; display:none}
+.thumb{display:none; width:200px; height:37px; overflow:hidden;}
+.undersec{width:202px; height:37px;}
+.ajaxloader{position:absolute; top:91px; left:83px; display:none}
+.maincontainer{position:relative}
+#mainbody {width:58px; float:left}
+.try{color: red;
+    font-size: 16px;}
+.hover{cursor:pointer !important}
+.remove-option{   
+ cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+      margin: -274px 0 0 172px;}
+.remove-model{ margin: -22px 177px;
+    position: absolute;  cursor:pointer;
+}
+.try-this-right-setting{height: 331px;}

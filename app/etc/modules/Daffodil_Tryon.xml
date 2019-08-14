@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+   <config>
+        <modules>
+            <Daffodil_Tryon>
+                <active>true</active>
+                <codePool>local</codePool>
+            </Daffodil_Tryon>
+        </modules>
+    </config>

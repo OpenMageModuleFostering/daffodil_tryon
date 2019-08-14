@@ -1,0 +1,236 @@
+<script>
+	jQuery(function() {
+	
+	    <!--jQuery('.firstdiv').stickyfloat({ duration: 100 }); -->
+		jQuery( "#draggable" ).draggable();		
+		jQuery('a.try').click(function() {
+		    jQuery('#draggable').hide();
+		    var firstele= jQuery(this).attr("rel");
+                    jQuery('.second img').attr("src", firstele);
+		   // jQuery('.second img').attr("width","121px");
+                    //jQuery('.second img').attr("height","120px");	
+	            jQuery('#draggable').fadeIn(800);
+                    jQuery('.remove-option').show();
+	            var p = jQuery(".second");
+       	            var position = p.position();
+                    var one =  position.top;	  
+                    return false;	   
+		});
+		
+		jQuery('.thumb img').click(function() {
+                    var thumbImage = jQuery(this).attr("src");
+                    jQuery('.bigimage').attr("src", thumbImage);
+                    jQuery('.thumb').slideUp(200);
+                    jQuery('.remove-model').hide();
+       
+		});
+	
+		jQuery('.pic').click(function() {
+                    jQuery('.thumb').slideDown(500);
+                    jQuery('#my-list').hoverscroll({   });
+                    jQuery('.remove-model').show();
+                    
+		});
+		jQuery('.remove-model').click(function(){
+                      jQuery('.thumb').hide();
+                      jQuery('.remove-model').hide();
+                });	
+		jQuery('.remove-option').click(function(){
+		     jQuery('#draggable').hide();
+                     jQuery('.remove-option').hide();
+                });
+	 });
+</script>
+	
+ <?php $baseImage = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);?>	
+<script type="text/javascript" >
+  jQuery(function(){
+		var btnUpload=jQuery('#upload');
+		var status=jQuery('#status');
+		new AjaxUpload(btnUpload, {
+			action: '<?php echo $baseImage ?>tryon/index/index',
+			name: 'uploadfile',
+			onSubmit: function(file, ext){
+				 if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext))){ 
+                    // extension is not allowed 
+					alert('Only JPG, PNG or GIF files are allowed');
+					return false;
+				}
+				  jQuery(".ajaxloader").show();
+			  if(jQuery('#draggable').is(':visible')) {
+					  jQuery('#draggable').hide();
+                                              jQuery('.remove-option').hide();
+					 } else {			
+					
+					 }
+			},
+			onComplete: function(file, response){
+            
+			var newContent = response;
+			//alert(newContent);
+			var firstCont = newContent.split(",");
+			var eyex = parseInt(firstCont[0]);
+			var eyey = parseInt(firstCont[1]);
+			
+            if(isNaN(eyex)) {
+			//alert('blank');
+                           alert('Image Not Supported');	
+			 jQuery('#draggable').hide();			       
+			//jQuery('.textdisplay').show();
+                        jQuery(".ajaxloader").hide();
+			jQuery(".ajaxloader").hide();
+                            jQuery('.remove-option').hide();
+                                 
+			
+			} else {
+			//jQuery('.textdisplay').hide();
+			
+			//alert('has');
+			
+		   var neweyex = eyex - 50;
+		   var neweyey = eyey - 37;
+           jQuery("#draggable").css("left", neweyey );
+	       jQuery("#draggable").css("top", neweyex);   
+            jQuery(".ajaxloader").hide();		   
+			 if(jQuery('#draggable').is(':visible')) {
+					 } else {
+					  jQuery('#draggable').show();
+                                           jQuery('.remove-option').show();
+					 }
+			
+			}		
+			var uploadimage = '<?php echo $baseImage ?>media/uploads/'+file;
+			//alert(uploadimage);
+			jQuery(".bigimage").attr("src", uploadimage);
+				//On completion clear the status
+				status.text('');
+				//Add uploaded file to list
+				if(response==="success"){
+				
+				//alert("success")
+					//jQuery('<li></li>').appendTo('#files').html('<img src="http://localhost:8080/magento/testmagento/media/uploads/'+file+'" alt="" /><br />'+file).addClass('success');
+				} else{				
+					//jQuery('<li></li>').appendTo('#files').text(file).addClass('error');
+				}
+		     }
+	     });
+		
+     });
+</script>
+<div class="try-this-right-setting">
+        <h4>Check this out</h4>
+        <div class="firstdiv" >
+                <div class="second ui-widget-content"  id="draggable">
+                      <img src=" " width="120" height="121" border="0" alt="">
+                </div>
+                <div class="ajaxloader" >
+                     <img src="<?php echo $this->getSkinUrl('images/ajax-loader.gif') ?>" alt="">
+                </div>
+                <div class="textdisplay">
+                     <span>Image Not Supported</span>
+                </div>
+                <img id="imgselect" src="<?php echo $this->getSkinUrl('images/model2.jpg') ?>" class="bigimage"/>  
+        </div>
+        <?php $baseImage = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); 
+        ?>
+        <div class="maincontainer" > 
+                <div class="thumb" >
+                        <div class="undersec" >
+                                <ul id="my-list">
+                                        <?php
+                                        $newPath =  $baseImage."/media/modelphotos/";
+                                          if ($handle = opendir('media/modelphotos/')) {
+                                             while (false !== ($file = readdir($handle)))
+                                             {
+                                                  if ($file != "." && $file != "..")
+                                                  { ?>
+                                                   <li><img src="<?php echo $newPath.$file ?>" width="35" height="35" /></li>
+
+                                               <?php }
+                                            }
+                                          closedir($handle);
+                                              //echo $thelist;
+                                          }
+                                      ?>
+                              </ul>
+                      </div>
+              </div>
+
+              <div id="mainbody" >
+                              <!-- Upload Button, use any id you wish-->
+                              <div id="upload" style="cursor:pointer">
+                                  <span>Upload image</span>
+                              </div>
+                              <span id="status" ></span>
+                              <ul id="files" ></ul>
+                </div>
+                <div class="pic">Select Model</div>
+                <div class="remove-model"  style="display:none">
+                        <img  src="<?php echo $this->getSkinUrl('images/cross.png') ?>" title="Click here to remove modules"/>  
+                </div>
+         </div> 
+         <div class="remove-option" style="display:none">
+               <img  src="<?php echo $this->getSkinUrl('images/cross.png') ?>" title="Click here to Remove Spects"/>  
+         </div>
+</div>
+<script type="text/javascript">
+
+jQuery(function() {
+	jQuery('#my-list li img').click(function() {
+	 var dataString = jQuery(this).attr("src");
+	    jQuery.ajax({ url: '<?php echo $baseImage ?>face/index/index',
+		 type: 'post',
+          data: { 'dataString': dataString },        
+         success: function(output) {
+                     var description = output;
+					//alert(description);
+					var desbreak = description.split(",");
+			        var deseyex = parseInt(desbreak[1]);
+			        var deseyey = parseInt(desbreak[2]);
+					if(isNaN(deseyex)) {
+			                         //alert('blank');
+                                                alert('Image Not Supported');
+						//jQuery('.textdisplay').show();
+						jQuery('#draggable').hide();	
+						jQuery(".ajaxloader").hide();	
+                                                    jQuery('.remove-option').hide();
+								      
+			
+			} else {
+			//jQuery('.textdisplay').hide();
+			
+			//alert('has');
+			
+					
+					var modeyex = deseyex - 50;
+		           var modeyey = deseyey - 37;
+                     jQuery("#draggable").css("left", modeyey );
+	                 jQuery("#draggable").css("top", modeyex);
+					 jQuery(".ajaxloader").hide();
+					 //jQuery('#draggable').fadeIn(600);
+					 if(jQuery('#draggable').is(':visible')) {
+					 } else {
+					  jQuery('#draggable').show();
+                                          jQuery('.remove-option').show();
+					 } }
+				//alert(deseyex);
+				//alert(deseyey);
+                  },
+       	
+		beforeSend: function() {
+              jQuery(".ajaxloader").show();
+			  if(jQuery('#draggable').is(':visible')) {
+					  jQuery('#draggable').hide();
+                                              jQuery('.remove-option').hide();
+					 } else {			
+					
+					 }
+			  
+           }
+       })
+     });
+		
+});
+
+
+</script>

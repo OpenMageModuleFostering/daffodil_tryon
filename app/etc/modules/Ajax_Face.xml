@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+  <config>
+	<modules>
+	    <Ajax_Face>
+		<active>true</active>
+		<codePool>local</codePool>
+	    </Ajax_Face>
+	</modules>
+  </config>
