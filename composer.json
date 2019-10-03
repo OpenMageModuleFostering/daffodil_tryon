@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/Daffodil_Tryon",
+    "name": "OpenMageModuleFostering\/Daffodil_Tryon",
     "type": "magento-module",
     "license": "GNU-General-Public-License",
     "homepage": "",
     "description": " Integrate Magento & your VirtualTRY Mirror in minutes with this FREE Magento extension by VirtualTRY.",
     "authors": [
-    {
-        "name": "Daffodil",
-        "email": "ashish.mittal@daffodilsw.com"
-    }
-],
+        {
+            "name": "Daffodil",
+            "email": "ashish.mittal@daffodilsw.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
